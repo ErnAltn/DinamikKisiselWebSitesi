@@ -1,0 +1,12 @@
+.background{
+  background-color: #e6e1dd;
+}
+.custom-img {
+    max-width: 300px;
+    max-height: 300px;
+    width: auto;
+    height: auto;
+  }
+  .container {
+    padding-top: 150px; /* Varsayılan navbar yüksekliği için, ancak kendi projenizdeki navbar yüksekliğine göre ayarlayın */
+}

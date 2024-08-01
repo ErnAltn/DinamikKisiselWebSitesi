@@ -1,0 +1,23 @@
+<div class="background">
+  <div class="container">
+    <div class="row" *ngFor="let homeItem of homepageList">
+      <div class="col-md-6" >
+        <br /><br /><br /><br /><br /><br />
+        <h1>Eren Altan</h1>
+        <p>
+          {{homeItem.description}}
+        </p>
+        <button style="--color: #e07d54; --border: 2px; --slant: 0.5em "  routerLink="pabout">
+          Daha Fazla...
+        </button>
+      </div>
+      <div class="col-md-6">
+        <img
+          src= "{{homeItem.url}}"
+          alt="Resim"
+          class="img-fluid"
+        />
+      </div>
+    </div>
+  </div>
+</div>

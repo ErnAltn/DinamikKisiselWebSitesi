@@ -1,0 +1,45 @@
+<div class="background">
+  <section class="wrapper">
+    <div class="container-fostrap">
+      <div class="content">
+        <div class="container">
+          <div class="h1 text-center text-dark" id="pageHeaderTitle">
+            Hizmetler
+          </div>
+          <div class="row">
+            <div class="col-md-4" style="padding: 15px" style="cursor: pointer;" [routerLink]="['/pservices', service.id]"  *ngFor="let service of serviceList">
+              <div class="card">
+                <a
+                [routerLink]="['/pservices', service.id]"
+                  class="img-card"
+                >
+                  <img
+                    src="{{service.imageUrl}}"
+                  />
+                </a>
+                <div class="card-content">
+                  <h4 class="card-title">
+                    <a
+                    >
+                      {{service.header}}
+                    </a>
+                  </h4>
+                  <p class="truncate">
+                    {{service.description}}
+                  </p>
+                </div>
+                <div class="card-read-more">
+                  <a
+                    class="btn btn-link btn-block"
+                  >
+                    Daha Fazlası İçin Tıkla
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

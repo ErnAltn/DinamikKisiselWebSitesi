@@ -1,0 +1,184 @@
+<div class="background">
+  <div class="content">
+    <div class="container">
+      <div class="row align-items-stretch no-gutters contact-wrap">
+        <div class="col-md-12">
+          <div class="form h-100">
+            <h3>İletişime Geç</h3>
+            <form
+              class="mb-5"
+              method="post"
+              id="contactAddForm"
+              name="contactAddForm"
+              *ngIf="contactAddForm"
+              [formGroup]="contactAddForm"
+              (ngSubmit)="save()"
+            >
+              <div class="row">
+                <div class="col-8 form-group mb-3">
+                  <label for="nameSurname" class="col-form-label"
+                    >Adı Soyadı *</label
+                  >
+                  <input
+                  
+                    type="text"
+                    id="nameSurname"
+                    name="nameSurname"
+                    formControlName="nameSurname"
+                    [ngModel]="nameSurnameInput"
+                    (ngModelChange)="
+                      changeFunction($event, 'nameSurname');
+                      nameSurnameBool = false
+                    "
+                    class="form-control"
+                  />
+                  <div
+                    *ngIf="
+                      (contactAddForm.get('nameSurname').errors?.required &&
+                        contactAddForm.get('nameSurname').dirty) ||
+                      nameSurnameBool
+                    "
+                    class="alertForValidator"
+                  >
+                    İsim Soyisim giriniz!
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-8 form-group mb-3">
+                  <label
+                    for="email"
+                    class="col-form-label"
+                    >Email *</label
+                  >
+
+                  <input
+              
+                    type="text"
+                    id="email"
+                    name="email"
+                    formControlName="email"
+                    [ngModel]="emailInput"
+                    (ngModelChange)="changeFunction($event, 'email')"
+                    class="form-control"
+                  />
+                  <div
+                    *ngIf="
+                      (!contactAddForm.get('email').errors?.required &&
+                        contactAddForm.get('email').errors?.email &&
+                        contactAddForm.get('email').dirty) ||
+                      emailBool
+                    "
+                    class="alertForValidator"
+                  >
+                    Lütfen düzgün formatta mail giriniz!
+                  </div>
+                </div>
+                <div class="col-8 form-group mb-3">
+                  <label for="phone" class="col-form-label">Telefon *</label>
+                  <input
+     
+                    type="text"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    formControlName="phoneNumber"
+                    [ngModel]="phoneInput"
+                    (ngModelChange)="changeFunction($event, 'phone')"
+                    class="form-control"
+                  />
+                  <div
+                    *ngIf="
+                      (!contactAddForm.get('phoneNumber').errors?.required &&
+                        contactAddForm.get('phoneNumber').dirty) ||
+                      phoneBool
+                    "
+                    class="alertForValidator"
+                  >
+                    Lütfen düzgün formatta telefon giriniz!
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-8 form-group mb-3">
+                  <label for="message" class="col-form-label"
+                    >Mesajınız *</label
+                  >
+                  <textarea
+                    class="form-control"
+                    cols="30"
+                    rows="4"
+             
+                    type="text"
+                    id="message"
+                    name="message"
+                    formControlName="message"
+                    [ngModel]="messageInput"
+                    (ngModelChange)="changeFunction($event, 'message')"
+                  ></textarea>
+                  <div
+                    *ngIf="
+                      (contactAddForm.get('message').errors?.required &&
+                        contactAddForm.get('message').dirty) ||
+                      messageBool
+                    "
+                    class="alertForValidator"
+                  >
+                    Mesaj giriniz
+                  </div>
+                </div>
+              </div>
+              <img src="../../../../../assets/img/xvg82hgtica.png" alt="">
+              <div class="row">
+                
+                <div class="col-8 form-group mb-3">
+                  <label
+                    for="captchaInput"
+                   
+                    class="col-form-label"
+                    >Doğrulama Kodu *</label
+                  >
+                
+              <input
+                
+                type="text"
+                id="captcha"
+                name="captcha"
+                class="form-control form-control-lg capthaThick"
+                formControlName="captchaInput"
+                [ngModel]="captchaInput"
+                (ngModelChange)="captchaInput = $event"
+              />
+              <div class="alertForValidator" *ngIf="showMessage">
+                {{ message }}
+              </div>
+
+              <div
+                class="alertForValidator"
+                style="margin-top: 2px"
+                *ngIf="
+                  contactAddForm.get('captchaInput').errors?.required &&
+                  contactAddForm.get('captchaInput').dirty
+                "
+              >
+                Lütfen Doğrulama Kodunu Giriniz!
+              </div>
+            </div>
+          </div>
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <input
+                    type="submit"
+                    value="Gönder"
+                    class="btn btn-primary rounded-0 py-2 px-4"
+                  />
+                  <span class="submitting"></span>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

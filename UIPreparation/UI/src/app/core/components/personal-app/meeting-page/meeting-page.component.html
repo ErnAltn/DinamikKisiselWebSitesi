@@ -1,0 +1,203 @@
+<div class="background">
+<div class="content">
+    
+    <div class="container">
+      <div class="h1 text-center text-dark" id="pageHeaderTitle">Randevu Al</div>
+      <div class="row align-items-stretch no-gutters contact-wrap">
+        <div class="col-md-8">
+          <div class="form h-100">
+            <h3>Randevu Al</h3>
+            <form class="mb-5" method="post" id="meetingAddForm"
+            name="meetingAddForm"
+            *ngIf="meetingAddForm"
+            [formGroup]="meetingAddForm"
+            (ngSubmit)="save()">
+              <div class="row">
+                <div class="col-md-6 form-group mb-5">
+                  <label for="nameSurname" class="col-form-label">Ad Soyad *</label>
+                  <input type="text" class="form-control"  id="nameSurname"
+                  name="nameSurname"
+                  formControlName="nameSurname"
+                  [ngModel]="nameSurnameInput"
+                  (ngModelChange)="
+                    changeFunction($event, 'nameSurname');
+                    nameSurnameBool = false
+                  ">
+                  <div
+                  *ngIf="
+                    (meetingAddForm.get('nameSurname').errors?.required &&
+                      meetingAddForm.get('nameSurname').dirty) ||
+                    nameSurnameBool
+                  "
+                  class="alertForValidator"
+                >
+                  İsim Soyisim giriniz!
+                </div>
+                </div>
+                <div class="col-md-6 form-group mb-5">
+                  <label for="email" class="col-form-label">Email *</label>
+                  <input type="text" class="form-control"                     
+                  id="email"
+                  name="email"
+                  formControlName="email"
+                  [ngModel]="emailInput"
+                  (ngModelChange)="changeFunction($event, 'email')" >
+                  <div
+                    *ngIf="
+                      (!meetingAddForm.get('email').errors?.required &&
+                        meetingAddForm.get('email').errors?.email &&
+                        meetingAddForm.get('email').dirty) ||
+                      emailBool
+                    "
+                    class="alertForValidator"
+                  >
+                    Lütfen düzgün formatta mail giriniz!
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 form-group mb-5">
+                  <label for="phone" class="col-form-label">Telefon</label>
+                  <input type="tel" class="form-control"  
+                  name="phoneNumber" 
+                  id="phoneNumber"                   
+                   formControlName="phoneNumber"
+                  [ngModel]="phoneInput"
+                  (ngModelChange)="changeFunction($event, 'phone')">
+                  </div>
+                </div>
+
+            
+              <div class="row">
+                <div class="col-md-6 form-group mb-5">
+                  <label for="" class="col-form-label">Tarih</label>
+                  <input type="date" class="form-control" name="date" id="date"
+                  formControlName="date"
+                  [ngModel]="dateInput"
+                  (ngModelChange)="
+                    changeFunction($event, 'date');
+                    dateBool = false
+                  "
+                  [min]="minDate" (input)="onDateChange($event.target.value)" >
+                  <div
+                  *ngIf="
+                    (meetingAddForm.get('date').errors?.required &&
+                      meetingAddForm.get('date').dirty) ||
+                      dateBool
+                  "
+                  class="alertForValidator"
+                >
+                  Tarih giriniz!
+                </div>
+                </div>
+                <div class="col-md-6 form-group mb-5">
+                  <label for="time" class="col-form-label">Saat *</label>
+                  <input type="time" class="form-control"               
+                  id="time"
+                  name="time"
+                  formControlName="time"
+                  [ngModel]="timeInput"
+                  (ngModelChange)="changeFunction($event, 'time')" 
+                  step="3600" (input)="setFullHour($event)">
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 form-group mb-5">
+                  <label for="shortInfo" class="col-form-label">Mesaj *</label>
+                  <textarea class="form-control" name="shortInfo" id="shortInfo" cols="30" rows="4"                     
+                  formControlName="shortInfo"
+                  [ngModel]="messageInput"
+                  (ngModelChange)="changeFunction($event, 'shortInfo')"></textarea>
+                  <div
+                  *ngIf="
+                    (meetingAddForm.get('shortInfo').errors?.required &&
+                      meetingAddForm.get('shortInfo').dirty) ||
+                    messageBool
+                  "
+                  class="alertForValidator"
+                >
+                  Mesaj giriniz
+                </div>
+                </div>
+              </div>
+              <img src="../../../../../assets/img/xvg82hgtica.png" alt="">
+              <div class="row">
+                
+                <div class="col-8 form-group mb-3">
+                  <label
+                    for="captchaInput"
+                   
+                    class="col-form-label"
+                    >Doğrulama Kodu *</label
+                  >
+                
+              <input
+                
+                type="text"
+                id="captcha"
+                name="captcha"
+                class="form-control form-control-lg capthaThick"
+                formControlName="captchaInput"
+                [ngModel]="captchaInput"
+                (ngModelChange)="captchaInput = $event"
+              />
+              <div class="alertForValidator" *ngIf="showMessage">
+                {{ message }}
+              </div>
+  
+              <div
+                class="alertForValidator"
+                style="margin-top: 2px"
+                *ngIf="
+                  meetingAddForm.get('captchaInput').errors?.required &&
+                  meetingAddForm.get('captchaInput').dirty
+                "
+              >
+                Lütfen Doğrulama Kodunu Giriniz!
+              </div>
+            </div>
+          </div>
+              <div class="row">
+                <div class="col-md-12 form-group">
+                  <input type="submit" value="Randevu Talebi" class="btn btn-primary rounded-0 py-2 px-4">
+                  <span class="submitting"></span>
+                </div>
+              </div>
+            </form>
+
+            <div id="form-message-warning mt-4"></div> 
+            <div id="form-message-success">
+              Your message was sent, thank you!
+            </div>
+
+
+
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="contact-info h-100">
+            <h3>İletişim Bilgileri</h3>
+            <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, magnam!</p>
+            <ul class="list-unstyled">
+              <li class="d-flex">
+                <span class="wrap-icon icon-room mr-3"></span>
+                <span class="text">Adress</span>
+              </li>
+              <li class="d-flex">
+                <span class="wrap-icon icon-phone mr-3"></span>
+                <span class="text">Telefon</span>
+              </li>
+              <li class="d-flex">
+                <span class="wrap-icon icon-envelope mr-3"></span>
+                <span class="text">Mail Adresi</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="background">
+<div class="container">
+<header class="site-navbar" role="banner">
+    <section>
+      <div class="container py-2">
+        <div class="h1 text-center text-dark" id="pageHeaderTitle">Yazılar</div>
+    
+        <article class="postcard light blue" style="cursor: pointer;" routerLink="/particle/{{article.id}}" *ngFor="let article of articleList">
+          <a class="postcard__img_link" routerLink="/particle/{{article.id}}">
+            <img class="postcard__img" src="{{article.imageUrl}}" alt="Image Title" />
+          </a>
+          <div class="postcard__text t-dark">
+            <h1 class="postcard__title blue"><a href="#">{{article.header}}</a></h1>
+            <div class="postcard__bar"></div>
+            <div class="postcard__preview-txt truncate">{{article.description}}</div>
+          </div>
+        </article>
+       
+      </div>
+    </section>
+  </header>
+</div>
+</div>
